@@ -1,5 +1,5 @@
 #!/bin/bash
-TEMP_FILE=./hob.tmp
+TEMP_FILE=./hob.`date +%Y-%m-%d:%H:%M:%S`
 
 curl -s http://dv.njtransit.com/mobile/tid-mobile.aspx?SID=HB > $TEMP_FILE
 
@@ -21,6 +21,6 @@ sed '
 	/^$/{N;/^\n$/d;}
 	s/ -SECNULL//g
 	s/$/,/
- ' $TEMP_FILE | paste - - - - - - - | column -t -s ","
+ ' $TEMP_FILE | paste - - - - - - - | column -t -s "," 
 
-rm -f $TEMP_FILE
+#rm -f $TEMP_FILE
